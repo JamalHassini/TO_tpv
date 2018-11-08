@@ -207,11 +207,13 @@ public class PanelAcceso extends javax.swing.JFrame {
     private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
         // TODO add your handling code here:
         acciones.acceder();
+        dispose();
     }//GEN-LAST:event_jPanel1KeyTyped
 
     private void btnAceptarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarKeyTyped
         // TODO add your handling code here:
         acciones.acceder();
+        dispose();
     }//GEN-LAST:event_btnAceptarKeyTyped
 
     
