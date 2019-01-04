@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package punto.de.venta.principal;
+package punto.de.venta.pantallas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import punto.de.venta.acciones.AccionesUsuarios;
-import punto.de.venta.pantallas.PanelAjustesUsuarios;
 
 /**
  *
@@ -22,19 +22,26 @@ public class PanelAcceso extends javax.swing.JFrame {
     /**
      * Creates new form PanelAcceso
      */
-    
     private AccionesUsuarios acciones;
-    
-   
-   public PanelAcceso() {
-       
-        
-       acciones = new AccionesUsuarios(this);
-        
-       this.setVisible(true);
+    private PantallaCajaRegistradora panel3;
+
+    public PanelAcceso() {
+
+        acciones = new AccionesUsuarios(this);
+        panel3 = new PantallaCajaRegistradora();
+
+        this.setVisible(true);
         initComponents();
-        
-        
+        txtUsuario.requestFocus();
+
+    }
+
+    public PantallaCajaRegistradora getPanel3() {
+        return panel3;
+    }
+
+    public void setPanel3(PantallaCajaRegistradora panel3) {
+        this.panel3 = panel3;
     }
 
     public JButton getBtnAceptar() {
@@ -73,8 +80,6 @@ public class PanelAcceso extends javax.swing.JFrame {
         return txtPass;
     }
 
-   
-
     public JTextField getTxtUsuario() {
         return txtUsuario;
     }
@@ -82,8 +87,6 @@ public class PanelAcceso extends javax.swing.JFrame {
     public void setTxtUsuario(JTextField txtUsuario) {
         this.txtUsuario = txtUsuario;
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,16 +107,15 @@ public class PanelAcceso extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jPanel1KeyTyped(evt);
-            }
-        });
-
         lblUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblUsuario.setText("USUARIO");
 
         txtUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         lblContrasena.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblContrasena.setText("CONTRASEÑA");
@@ -125,9 +127,9 @@ public class PanelAcceso extends javax.swing.JFrame {
                 btnAceptarMouseClicked(evt);
             }
         });
-        btnAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                btnAceptarKeyTyped(evt);
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -136,6 +138,13 @@ public class PanelAcceso extends javax.swing.JFrame {
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCancelarMouseClicked(evt);
+            }
+        });
+
+        txtPass.setNextFocusableComponent(btnAceptar);
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPassKeyTyped(evt);
             }
         });
 
@@ -194,9 +203,11 @@ public class PanelAcceso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-        // TODO add your handling code here:
-        acciones.acceder();
+        // TODO add your handling code here:       
+        acciones.acceder();  
+        
         dispose();
+        
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -204,19 +215,31 @@ public class PanelAcceso extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
-    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
         // TODO add your handling code here:
-        acciones.acceder();
-        dispose();
-    }//GEN-LAST:event_jPanel1KeyTyped
+        //char ctpress = evt.getKeyChar();        
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+           btnAceptar.doClick();
+           acciones.acceder();   
+           dispose();
+        }
+        
+    }//GEN-LAST:event_txtPassKeyTyped
 
-    private void btnAceptarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarKeyTyped
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        acciones.acceder();
-        dispose();
-    }//GEN-LAST:event_btnAceptarKeyTyped
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
-    
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        // TODO add your handling code here:
+        //char ctpres = ;        
+        if(evt.getKeyChar()== KeyEvent.VK_ENTER){
+        txtPass.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;

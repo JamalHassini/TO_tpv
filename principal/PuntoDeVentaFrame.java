@@ -11,6 +11,7 @@ import punto.de.venta.pantallas.PantallaVentasDia;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import punto.de.venta.acciones.AccionesUsuarios;
 import punto.de.venta.pantallas.PanelAjustesProductos;
 import punto.de.venta.pantallas.PanelAjustesUsuarios;
 import punto.de.venta.pantallas.PanelClientes;
@@ -24,7 +25,15 @@ import punto.de.venta.pantallas.PanelListaUsuarios;
 public class PuntoDeVentaFrame extends javax.swing.JFrame {
 
     JFrame CajaRegistradoraFrame = new JFrame();
-
+    
+    private AccionesUsuarios usuarios;
+    
+    public PuntoDeVentaFrame(AccionesUsuarios usuarios){
+            
+         this.usuarios=usuarios;
+         
+    }
+    
     /**
      * Creates new form CajaRegistradoraFrame
      */
@@ -34,6 +43,7 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
 
         PantallaCajaRegistradora verCaja = new PantallaCajaRegistradora(this);
         pnlContenedor.add(verCaja, java.awt.BorderLayout.CENTER);
+        
         this.setSize(1000, 700);
     }
 
@@ -47,9 +57,7 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
 
     public JMenuItem getMntmConfBotones() {
         return mntmConfBotones;
-    }
-    
-    
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -187,10 +195,15 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
     private void mnuCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCajaActionPerformed
         // TODO add your handling code here:
         pnlContenedor.removeAll();
+        String operari= PantallaCajaRegistradora.getLblOperario().getText();
         PantallaCajaRegistradora verCaja = new PantallaCajaRegistradora(this);
+        verCaja.getLblOperario().setText(operari);
         pnlContenedor.add(verCaja, java.awt.BorderLayout.CENTER);
+        
         pack();
         this.setSize(1000, 700);
+        
+        
     }//GEN-LAST:event_mnuCajaActionPerformed
 
     private void mnuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVentasActionPerformed

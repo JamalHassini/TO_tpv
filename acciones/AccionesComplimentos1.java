@@ -5,8 +5,6 @@
  */
 package punto.de.venta.acciones;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -17,14 +15,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 
 import punto.de.venta.pantallas.PanelComplimentos;
 import punto.de.venta.pantallas.PantallaCajaRegistradora;

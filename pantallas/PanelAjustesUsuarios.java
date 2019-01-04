@@ -8,7 +8,6 @@ package punto.de.venta.pantallas;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import punto.de.venta.acciones.AccionesUsuarios;
@@ -18,22 +17,19 @@ import punto.de.venta.acciones.AccionesUsuarios;
  * @author Usuario1
  */
 public class PanelAjustesUsuarios extends javax.swing.JFrame {
-    
+
     private AccionesUsuarios acciones;
-    
 
     /**
      * Creates new form PanelAjustesUsuarios
      */
     public PanelAjustesUsuarios() {
-        
+
         acciones = new AccionesUsuarios(this);
         this.setTitle("Usuarios");
         initComponents();
         acciones.cargaComboTipoUsuario();
     }
-    
-    
 
     public JButton getBtnCancelar() {
         return btnCancelar;
@@ -43,70 +39,45 @@ public class PanelAjustesUsuarios extends javax.swing.JFrame {
         return cmbTipoUsuario;
     }
 
-   
-
     public JButton getBtnGuardar() {
         return btnGuardar;
     }
-
-    
 
     public JButton getBtnBuscarImagen() {
         return btnBuscarImagen;
     }
 
-    
-
     public JLabel getLblImagen() {
         return lblImagen;
-    }   
-
-   
+    }
 
     public JLabel getLblConfPass() {
         return lblConfPass;
     }
 
-    
-
     public JLabel getLblNombre() {
         return lblNombre;
     }
-
-   
 
     public JLabel getLblPass() {
         return lblPass;
     }
 
-    
-
     public JLabel getLblUsuario() {
         return lblUsuario;
     }
-
-    
 
     public JPasswordField getTxtConfPass() {
         return txtConfPass;
     }
 
-    
-
     public JTextField getTxtNombre() {
         return txtNombre;
     }
 
-    
-
     public JPasswordField getTxtPass() {
         return txtPass;
     }
-
-    
-    
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -261,7 +232,7 @@ public class PanelAjustesUsuarios extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarImagen;
     private javax.swing.JButton btnCancelar;
@@ -277,4 +248,5 @@ public class PanelAjustesUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -17,6 +17,6 @@ public class ServiceVentasDia extends GestionSql {
     public static final String SQLVentas = ("SELECT Fecha,Hora,"
             + "Nombre_Y_Apellidos,idVentas,Total FROM " + TABLEVentas 
             + " INNER JOIN " + TABLEClientes + " ON ventas.clientes_IdCliente "
-            + "= clientes.IdCliente WHERE Fecha >= ? AND Fecha  <= ? ORDER BY Fecha");
+            + "= clientes.IdCliente WHERE fecha >= ? AND fecha  <= ? ORDER BY fecha");
 
 }

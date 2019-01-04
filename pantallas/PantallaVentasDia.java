@@ -54,9 +54,19 @@ public class PantallaVentasDia extends javax.swing.JPanel {
     public JDateChooser getDtChooserf() {
         return dtChooserf;
     }
+
+    
+
+    public void setDtChooserf(JDateChooser dtChooserf) {
+        this.dtChooserf = dtChooserf;
+    }
     
     public JDateChooser getDtChooser1() {
         return dtChooser1;
+    }
+    
+    public void setDtChooser1(JDateChooser dtChooser1) {
+        this.dtChooser1 = dtChooser1;
     }
     /**
      * Getter del campo de texto total de ventas
@@ -138,7 +148,7 @@ public class PantallaVentasDia extends javax.swing.JPanel {
         lblTotalVentas.setBounds(780, 590, 100, 30);
 
         dtChooserf.setBackground(new java.awt.Color(153, 153, 255));
-        dtChooserf.setDateFormatString("dd-MM-yyyy");
+        dtChooserf.setDateFormatString("yyyy-MM-dd");
         dtChooserf.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         add(dtChooserf);
         dtChooserf.setBounds(470, 100, 200, 30);
@@ -148,7 +158,7 @@ public class PantallaVentasDia extends javax.swing.JPanel {
         txtTotalVentas.setBounds(870, 590, 80, 30);
 
         dtChooser1.setBackground(new java.awt.Color(153, 153, 255));
-        dtChooser1.setDateFormatString("dd-MM-yyyy");
+        dtChooser1.setDateFormatString("yyyy-MM-dd");
         dtChooser1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         add(dtChooser1);
         dtChooser1.setBounds(100, 100, 210, 30);

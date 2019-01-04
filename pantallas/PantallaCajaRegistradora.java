@@ -23,9 +23,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
 
     private PuntoDeVentaFrame frame;
     private AccionesCajaRegistradora acciones;
-    private AccionesUsuarios accione;
-
-    
+    public AccionesUsuarios accione;
 
     /**
      * Constructor de la pantallaCajaRegistradora
@@ -44,6 +42,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         acciones.hora(); // Metodo de la clase accionesCajaRegistradora que muestra la hora en el JTextField txtHora
         acciones.ajustarCeldas();// Metodo de la clase accionesCajaRegistradora que ajusta el encabezado y las celdas de la tblSumaPedidos
         acciones.devuelveClientes();// Metodo de la clase accionesCajaRegistradora que carga los clientes en el JCombobox cmbClientes
+        acciones.ultimasession();
         acciones.getIdVentas();// Metodo de la clase accionesCajaRegistradora que muestra el id del nuevo pedido a hacer en el JTextField txtCodPedido
         acciones.comboCantidad(); // Metodo de la clase accionesCajaRegistradora que muestra el JComboBox en la columna cantidad
         acciones.calculaSubtotal();// Metodo de la clase accionesCajaRegistradora que calcula la columna subtotal de cada fila
@@ -54,48 +53,52 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         acciones.botonComplimentos();
         acciones.botonPostres();
         acciones.botonCafes();
-//        accione.acceder();
+        
+        PanelBebidas panelBebidas = new PanelBebidas(this);
+        pnlProductos.add(panelBebidas, java.awt.BorderLayout.CENTER);
+        pnlProductos.repaint();
+        
     }
 
     public PantallaCajaRegistradora() {
+        
         initComponents();
+        
     }
 
     /**
-     * Getter de la tabla que suma pedidos.
      *
-     * @return JTable tblSumaPedidos donde se van sumando los productos pedidos.
+     * @return
      */
-    
-    public JLabel getLblOperario() {
+    public static JLabel getLblOperario() {
         return lblOperario;
     }
-    
+
     public JTable getTblSumaPedidos() {
         return tblSumaPedidos;
     }
-    
+
     public JButton getBtnEntrantes() {
-        
+
         return btnEntrantes;
     }
-    
+
     public JButton getBtnBebidas() {
         return btnBebidas;
     }
-    
+
     public JButton getBtnHamburguesas() {
         return btnHamburguesas;
     }
-    
+
     public JButton getBtnPostres() {
         return btnPostres;
     }
-    
-     public JButton getBtnCafes() {
+
+    public JButton getBtnCafes() {
         return btnCafes;
     }
-    
+
     public JButton getBtnComplimentos() {
         return btnComplimentos;
     }
@@ -676,9 +679,15 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         add(cmbClientes);
         cmbClientes.setBounds(560, 20, 320, 23);
 
-        lblOperario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblOperario.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblOperario.setForeground(new java.awt.Color(153, 0, 153));
+        lblOperario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOperario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario1\\Desktop\\Sin título.jpg")); // NOI18N
+        lblOperario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lblOperario.setAlignmentY(0.0F);
+        lblOperario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(lblOperario);
-        lblOperario.setBounds(10, 20, 110, 20);
+        lblOperario.setBounds(10, 10, 130, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrantesMouseClicked
@@ -707,7 +716,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
 
     private void btnBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBebidasActionPerformed
         // Este bloque muestra el PanelBebidas en el panelProductos de la pantallaCajaRegistradora
-        
+
         pnlProductos.removeAll();
         PanelBebidas panelBebidas = new PanelBebidas(this);
         pnlProductos.add(panelBebidas, java.awt.BorderLayout.CENTER);
@@ -728,6 +737,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         // Metodo de la clase accionesCajaRegistradora que guarda los detalles de los pedidos
         acciones.guardarDetalles();
         acciones.actualizaStock();
+        //acciones.ultimasession();
     }//GEN-LAST:event_btnPedirActionPerformed
 
     private void btnDescartarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescartarActionPerformed
@@ -839,7 +849,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblNomCliente;
-    private javax.swing.JLabel lblOperario;
+    public static javax.swing.JLabel lblOperario;
     private javax.swing.JLabel lblPagado;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlCategorias;
@@ -854,9 +864,5 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
     private javax.swing.JTextField txtPagado;
     public javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
-
-    
-
-    
 
 }

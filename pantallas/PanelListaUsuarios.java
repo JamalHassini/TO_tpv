@@ -26,6 +26,7 @@ public class PanelListaUsuarios extends javax.swing.JFrame {
         acciones = new AccionesUsuarios(this);
         initComponents();
         acciones.consultaUsuarios();
+        acciones.ajustartblusuarios();
     }
 
     public JButton getBtnListar() {
@@ -179,8 +180,9 @@ public class PanelListaUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         acciones.consultaUsuarios();
+        acciones.ajustartblusuarios();
     }//GEN-LAST:event_btnListarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked

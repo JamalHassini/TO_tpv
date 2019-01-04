@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -70,8 +71,8 @@ public class AccionesVentasDia extends ServiceVentasDia {
 
         Connection conexion = getConnection();
 
-        String desde = ((JTextField) panel.getDtChooser1().getDateEditor().getUiComponent()).getText();
-        String hasta = ((JTextField) panel.getDtChooserf().getDateEditor().getUiComponent()).getText();
+        String desde = ((JTextField) panel.getDtChooser1().getDateEditor().getUiComponent()).getText();//(JTextField) .getText();
+        String hasta = ((JTextField) panel.getDtChooserf().getDateEditor().getUiComponent()).getText();//.getText();
 
         try {
 

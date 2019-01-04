@@ -5,14 +5,8 @@
  */
 package punto.de.venta.pantallas;
 
-import java.awt.Image;
-import java.io.File;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import punto.de.venta.acciones.AccionesAjustesProductos;
 
 /**
@@ -20,32 +14,32 @@ import punto.de.venta.acciones.AccionesAjustesProductos;
  * @author Usuario1
  */
 public class PanelModificaCategoria extends javax.swing.JFrame {
-    
+
     private PanelAjustesProductos panel5;
     private AccionesAjustesProductos acciones;
+
     /**
      * Creates new form PanelModificaCategoria
      */
     public PanelModificaCategoria() {
-        
+
         acciones = new AccionesAjustesProductos(this);
-        
+
         this.setTitle("Modificar categoria");
         initComponents();
         acciones.modificaCategoria();
+
     }
-    
-    
-     public JTextField getTxtNuevaCategoria() {
+
+    public JTextField getTxtNuevaCategoria() {
         return txtNuevaCategoria;
     }
 
-   
-    
-    public JLabel getLblNuevaImagenC(){
-        
+    public JLabel getLblNuevaImagenC() {
+
         return lblNuevaImagenC;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,13 +124,13 @@ public class PanelModificaCategoria extends javax.swing.JFrame {
     private void btnGuardarNuevaCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarNuevaCategoriaMouseClicked
         // TODO add your handling code here:
         acciones.editaCategoria();
-
         dispose();
+        
     }//GEN-LAST:event_btnGuardarNuevaCategoriaMouseClicked
 
     private void btnBuscarImagenCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarImagenCMouseClicked
         // TODO add your handling code here:
-        
+
         acciones.modificaImagenCategoria();
 
     }//GEN-LAST:event_btnBuscarImagenCMouseClicked
@@ -157,5 +151,4 @@ public class PanelModificaCategoria extends javax.swing.JFrame {
     private javax.swing.JTextField txtNuevaCategoria;
     // End of variables declaration//GEN-END:variables
 
-    
 }

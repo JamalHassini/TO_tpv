@@ -485,36 +485,44 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
             int rows = tblProductos.getSelectedRow();
 
-            PreparedStatement ps = conexion.prepareStatement(SQLCmbCategorias);
+            if (rows <= -1) {
 
-            ResultSet rs;
-            rs = ps.executeQuery();
+                //JOptionPane.showMessageDialog(null, "Seleccione un a fila");
+            } else {
 
-            while (rs.next()) {
+                PreparedStatement ps = conexion.prepareStatement(SQLCmbCategorias);
 
-                String categoria = rs.getString("Nombre");
+                ResultSet rs;
+                rs = ps.executeQuery();
 
-                panel4.getCmbCategorias().addItem(categoria);
+                while (rs.next()) {
 
-                panel4.getTxtId().setText(modelo.getValueAt(rows, 0).toString());
-                panel4.getTxtDescripcion().setText(modelo.getValueAt(rows, 1).toString());
-                panel4.getTxtPrecio().setText(modelo.getValueAt(rows, 2).toString());
-                panel4.getTxtCantidad().setText(modelo.getValueAt(rows, 3).toString());
+                    String categoria = rs.getString("Nombre");
 
-                Blob imgp = (Blob) modelo.getValueAt(rows, 4);
-                byte[] imageDatap = null;
-                imageDatap = imgp.getBytes(1, (int) imgp.length());
-                BufferedImage imag = ImageIO.read(new ByteArrayInputStream(imageDatap));
-                ImageIcon jk1p = new ImageIcon(imag);
-                Icon fopruebap = new ImageIcon(jk1p.getImage().getScaledInstance(panel4.getLblNuevaImagenP().getWidth(), panel4.getLblNuevaImagenP().getHeight(), Image.SCALE_DEFAULT));
-                panel4.getLblNuevaImagenP().setIcon(fopruebap);
+                    panel4.getCmbCategorias().addItem(categoria);
 
+                    panel4.getTxtId().setText(modelo.getValueAt(rows, 0).toString());
+                    panel4.getTxtDescripcion().setText(modelo.getValueAt(rows, 1).toString());
+                    panel4.getTxtPrecio().setText(modelo.getValueAt(rows, 2).toString());
+                    panel4.getTxtCantidad().setText(modelo.getValueAt(rows, 3).toString());
+
+                    Blob imgp = (Blob) modelo.getValueAt(rows, 4);
+                    byte[] imageDatap = null;
+                    imageDatap = imgp.getBytes(1, (int) imgp.length());
+                    BufferedImage imag = ImageIO.read(new ByteArrayInputStream(imageDatap));
+                    ImageIcon jk1p = new ImageIcon(imag);
+                    Icon fopruebap = new ImageIcon(jk1p.getImage().getScaledInstance(panel4.getLblNuevaImagenP().getWidth(), panel4.getLblNuevaImagenP().getHeight(), Image.SCALE_DEFAULT));
+                    panel4.getLblNuevaImagenP().setIcon(fopruebap);
+
+                }
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(AccionesAjustesProductos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(AccionesAjustesProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void actualizaProducto() {
@@ -531,7 +539,7 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             String cantidad = panel4.getTxtCantidad().getText();
 
             try {
-          
+
                 PreparedStatement ps = conexion.prepareStatement(SQLActualizaproducto);
 
                 ps.setString(1, descripcion);
@@ -564,9 +572,9 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             JOptionPane.showMessageDialog(panel, "No se ha modificado el producto");
         }
     }
-    
+
     public void modificaImagenCategoriaN() {
-        
+
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
         int estado = j.showOpenDialog(null);
@@ -586,11 +594,11 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             } catch (FileNotFoundException ex) {
             }
         }
-        
+
     }
-    
+
     public void modificaImagenProducto() {
-        
+
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
         int estado = j.showOpenDialog(null);
@@ -610,11 +618,11 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             } catch (FileNotFoundException ex) {
             }
         }
-        
+
     }
-    
+
     public void modificaImagenProductoN() {
-        
+
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
         int estado = j.showOpenDialog(null);
@@ -634,10 +642,9 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
             } catch (FileNotFoundException ex) {
             }
         }
-        
-        
+
     }
- 
+
     public void modificaImagenCategoria() {
 
         JFileChooser j = new JFileChooser();
@@ -664,24 +671,24 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
     public void modificaCategoria() {
 
         Connection conexion = getConnection();
+        
 
         try {
+            
             DefaultTableModel modelo = (DefaultTableModel) tblCategorias.getModel();
             int rowss = tblCategorias.getSelectedRow();
 
             panel5.getTxtNuevaCategoria().setText(modelo.getValueAt(rowss, 1).toString());
 
             Blob imgp = (Blob) modelo.getValueAt(rowss, 2);
-            byte[] imageDatap = null;
+            byte[] imageDatap;
             imageDatap = imgp.getBytes(1, (int) imgp.length());
             BufferedImage imag = ImageIO.read(new ByteArrayInputStream(imageDatap));
             ImageIcon jk1p = new ImageIcon(imag);
             Icon fopruebap = new ImageIcon(jk1p.getImage().getScaledInstance(panel5.getLblNuevaImagenC().getWidth(), panel5.getLblNuevaImagenC().getHeight(), Image.SCALE_DEFAULT));
             panel5.getLblNuevaImagenC().setIcon(fopruebap);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AccionesAjustesProductos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+           
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(AccionesAjustesProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -719,8 +726,7 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
 
             ps.setString(1, nombre);
 
-//            FileInputStream archivoFoto;
-//            archivoFoto = new FileInputStream(panel2.getTxtRutaC().getText());
+
             ps.setBinaryStream(2, fis, longitudBytes);
 
             ps.executeUpdate();

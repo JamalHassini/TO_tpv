@@ -29,9 +29,14 @@ public class ServiceCajaRegistradora extends GestionSql {
 
     public static final String SQLCmbClientes = "SELECT Nombre_Y_Apellidos from "
             + TABLEClientes + " ORDER BY Nombre_Y_Apellidos";
+//    public static final String SQLOperario = "SELECT Nombre from "
+//            + TABLEUsuarios ;
 
     public static final String SQLStock = "UPDATE " + TABLEProductos + 
             " SET cantidad = cantidad - ? WHERE Descripcion = ?";
+    
+    public static final String SQLUltimaSession = "UPDATE " + TABLEUsuarios + 
+            " SET Lastsession = ? WHERE Nombre = ?";
     
     public static final String SQLBotonBebidas = "select Nombre, Imagenc from " + TABLECategorias + " WHERE Nombre like 'Bebidas'";
     

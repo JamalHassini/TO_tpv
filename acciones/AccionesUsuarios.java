@@ -5,19 +5,19 @@
  */
 package punto.de.venta.acciones;
 
-import static com.sun.glass.ui.Cursor.setVisible;
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static punto.de.venta.gestionbd.ServiceClientes.SQLC4;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import punto.de.venta.gestionbd.ServiceUsuarios;
-import punto.de.venta.principal.PanelAcceso;
+import punto.de.venta.pantallas.PanelAcceso;
 import punto.de.venta.pantallas.PanelAjustesUsuarios;
 import punto.de.venta.pantallas.PanelClientes;
 import punto.de.venta.pantallas.PanelListaUsuarios;
@@ -55,11 +55,27 @@ public class AccionesUsuarios extends ServiceUsuarios {
     public AccionesUsuarios(PanelListaUsuarios panel4) {
         this.panel4 = panel4;
     }
+    
+
+    public void ajustartblusuarios() {
+
+        TableColumnModel columnModel = panel4.getTblListaUsuarios().getColumnModel();
+        JTableHeader cabecera = panel4.getTblListaUsuarios().getTableHeader();
+        cabecera.setBackground(Color.pink);
+        cabecera.setFont(new Font("Arial", Font.BOLD, 14));
+        cabecera.setForeground(Color.BLACK);
+
+        columnModel.getColumn(0).setPreferredWidth(10);
+        columnModel.getColumn(1).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(35);
+        columnModel.getColumn(3).setPreferredWidth(45);
+        columnModel.getColumn(4).setPreferredWidth(80);
+    }
 
     public void acceder() {
 
         String tipousuario = "";
-        //String usuario = null;
+        String operario = "";
 
         if ("".equals(panel1.getTxtUsuario().getText()) || "".equals(Arrays.toString(panel1.getTxtPass().getPassword()))) {
 
@@ -79,21 +95,20 @@ public class AccionesUsuarios extends ServiceUsuarios {
                 ps.setString(1, usu);
                 ps.setString(2, pas);
                 rs = ps.executeQuery();
-                
-                
 
                 while (rs.next()) {
 
+                    operario = rs.getString("Nombre");
                     tipousuario = rs.getString("Tipo_Usuario");
-                    PantallaCajaRegistradora pantalla= new PantallaCajaRegistradora();
-                pantalla.getLblOperario().setText(rs.getString("Nombre"));
                 }
+
                 switch (tipousuario) {
                     case "Root": {
                         PuntoDeVentaFrame frame = new PuntoDeVentaFrame();
                         frame.setSize(1000, 700);
                         frame.setLocationRelativeTo(null);
                         frame.setVisible(true);
+                        PantallaCajaRegistradora.getLblOperario().setText(operario);
                         break;
                     }
                     case "Admin": {
@@ -102,6 +117,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
                         frame.setLocationRelativeTo(null);
                         frame.setVisible(true);
                         frame.getMntmConfBotones().setVisible(false);
+                        PantallaCajaRegistradora.getLblOperario().setText(operario);
                         break;
                     }
                     case "Operario": {
@@ -111,14 +127,13 @@ public class AccionesUsuarios extends ServiceUsuarios {
                         frame.setVisible(true);
                         frame.getMnuUsuarios().setVisible(false);
                         frame.getMnuProductos().setVisible(false);
-
-                        PanelClientes panell = new PanelClientes();
-                        panell.getBtnEliminarCliente().setEnabled(false);//setVisible(false);
+                        PantallaCajaRegistradora.getLblOperario().setText(operario);
                         break;
                     }
                     default:
                         JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos!!!");
                         break;
+
                 }
 
             } catch (SQLException se) {
@@ -131,12 +146,13 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
                 } catch (SQLException se) {
                 }
-
             }
         }
 
     }
 
+   
+    
     public void cargaComboTipoUsuario() {
 
         Connection conexion = getConnection();
@@ -187,7 +203,10 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
                 String Nombre = panel.getTxtNombre().getText();
                 String Usuario = panel.getCmbTipoUsuario().getSelectedItem().toString();
-                String Pass = Arrays.toString(panel.getTxtPass().getPassword());
+                String Pass = panel.getTxtPass().getText();
+//                String lstsessionf = panel3.getTxtFecha().getText();
+//                String lstsessionh = panel3.getTxtHora().getText();
+//                String lastsession = lstsessionf+lstsessionh;
 
                 try {
 
@@ -196,6 +215,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
                     ps.setString(1, Nombre);
                     ps.setString(2, Usuario);
                     ps.setString(3, Pass);
+                    //ps.setString(4, lastsession);
 
                     ps.executeUpdate();
 
@@ -231,11 +251,11 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
         try {
 
-            dtm.addColumn("IdUsuario");
+            dtm.addColumn("Id");
             dtm.addColumn("Nombre");
-            dtm.addColumn("Tipo_Usuario");
+            dtm.addColumn("Tipo");
             dtm.addColumn("Password");
-            //dtm.addColumn("Lastsession");
+            dtm.addColumn("Lastsession");
 
             PreparedStatement ps = conexion.prepareStatement(SQLListaUsuarios);
 
@@ -243,7 +263,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
             while (rs.next()) {
 
-                dtm.addRow(new Object[]{rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4)});//, rs.findColumn("Lastsession")});
+                dtm.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
             }
 
             panel4.getTblListaUsuarios().setModel(dtm);
@@ -304,12 +324,12 @@ public class AccionesUsuarios extends ServiceUsuarios {
     }
 
     public void modificarUsuario() {
-        
+
         int opcion = JOptionPane.showConfirmDialog(panel, "¿Modificar usuario?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
 
             Connection conexion = getConnection();
-            
+
             DefaultTableModel mode = (DefaultTableModel) panel4.getTblListaUsuarios().getModel();
             int row = panel4.getTblListaUsuarios().getSelectedRow();
 
@@ -325,7 +345,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
                 ps.setString(1, nombre);
                 ps.setString(2, tipousuario);
                 ps.setString(3, pass);
-               ps.setString(4, Id);
+                ps.setString(4, Id);
 
                 ps.executeUpdate();
 

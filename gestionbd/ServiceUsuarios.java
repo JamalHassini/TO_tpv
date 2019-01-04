@@ -11,7 +11,7 @@ package punto.de.venta.gestionbd;
  */
 public class ServiceUsuarios extends GestionSql {
 
-    public static final String SQLGuardaUsuario = "INSERT INTO usuarios(Nombre, Tipo_Usuario, Password) VALUES(?,?,?)";
+    public static final String SQLGuardaUsuario = "INSERT INTO " + TABLEUsuarios + "(Nombre, Tipo_Usuario, Password) VALUES(?,?,?)";
     public static final String SQLCmbTipoUsuario = "SELECT Nombre FROM tipo_usuario";
     public static final String SQLAcceso = "SELECT Nombre, Tipo_Usuario, Password FROM " + TABLEUsuarios + " WHERE Nombre = ? && Password = ?";
     public static final String SQLListaUsuarios = "SELECT IdUsuario, Nombre, Tipo_Usuario, Password, Lastsession FROM " + TABLEUsuarios;

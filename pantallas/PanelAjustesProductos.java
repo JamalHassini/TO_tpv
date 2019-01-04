@@ -268,12 +268,13 @@ public class PanelAjustesProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminaCMouseClicked
 
     private void btnModificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarProductoMouseClicked
-        // TODO add your handling code here:        
+        // TODO add your handling code here:  
+        //acciones.modificarPoducto();
     }//GEN-LAST:event_btnModificarProductoMouseClicked
 
     private void btnModificaCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificaCMouseClicked
         // TODO add your handling code here:
-        PanelModificaCategoria pnlnp= new PanelModificaCategoria();
+        PanelModificaCategoria pnlnp = new PanelModificaCategoria();
         pnlnp.setLocationRelativeTo(null);
         pnlnp.setVisible(true);
         
@@ -313,6 +314,7 @@ public class PanelAjustesProductos extends javax.swing.JPanel {
         PanelModificaProducto pnlnp= new PanelModificaProducto();
         pnlnp.setLocationRelativeTo(null);
         pnlnp.setVisible(true);
+        
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

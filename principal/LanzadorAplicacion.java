@@ -5,6 +5,8 @@
  */
 package punto.de.venta.principal;
 
+import punto.de.venta.pantallas.PanelAcceso;
+
 /**
  * Clase lanzadora de la aplicación.
  *

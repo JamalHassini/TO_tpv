@@ -29,7 +29,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-//import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -43,11 +42,11 @@ import punto.de.venta.pantallas.PantallaCajaRegistradora;
  *
  * @author Jamal Hassini
  */
+
 public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
 
     private PantallaCajaRegistradora panel;
-    //private JTextField txtTotal;
-
+    
     /**
      * Constructor de la clase accionesCajaRegistradora.
      *
@@ -94,7 +93,7 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
      */
     public void fecha() {
         Date fec = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         panel.getTxtFecha().setText(formatoFecha.format(fec));
     }
 
@@ -139,7 +138,7 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
             }
         }
     }
-
+    
     /**
      * Metodo que calcula la columna descuento y la columna subtotal de cada
      * fila de la tblSumaPedidos dependiendo del valor de la columna cantidad
@@ -147,40 +146,34 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
     public void calculaSubtotal() {
 
         DefaultTableModel modelo = (DefaultTableModel) panel.getTblSumaPedidos().getModel();
-        modelo.addTableModelListener(new TableModelListener() {
-
-            /**
-             * Metodo sobre escrito que captura los cambios hechos sobre la
-             * tabla tblSumaPedidos
-             *
-             * @param evento calcula las columnas descuento y subtotal segun el
-             * valor de la columna cantidad
-             */
-            @Override
-            public void tableChanged(TableModelEvent evento) {
-
-                if (evento.getType() == TableModelEvent.UPDATE) {
-
-                    int fil = evento.getFirstRow();
-                    int column = evento.getColumn();
-                    if (column == 1) {
-
-                        int cantidad = Integer.parseInt(modelo.getValueAt(fil, 1).toString());
-                        double precio = Double.parseDouble(modelo.getValueAt(fil, 2).toString());
-                        float descuento = Float.parseFloat(modelo.getValueAt(fil, 3).toString());
-                        float subtotal = (float) (cantidad * precio);
-
-                        if (cantidad == 5) {
-
-                            descuento = (float) (subtotal * 0.10);
-                            panel.getTblSumaPedidos().setValueAt(descuento, fil, 3);
-                        }
-
-                        panel.getTblSumaPedidos().setValueAt(subtotal - descuento, fil, 4);
+        modelo.addTableModelListener((TableModelEvent evento) -> {
+            if (evento.getType() == TableModelEvent.UPDATE) {
+                
+                int fil = evento.getFirstRow();
+                int column = evento.getColumn();
+                if (column == 1) {
+                    
+                    int cantidad = Integer.parseInt(modelo.getValueAt(fil, 1).toString());
+                    double precio = Double.parseDouble(modelo.getValueAt(fil, 2).toString());
+                    float descuento = Float.parseFloat(modelo.getValueAt(fil, 3).toString());
+                    float subtotal = (float) (cantidad * precio);
+                    
+                    if (cantidad == 5) {
+                        
+                        descuento = (float) (subtotal * 0.10);
+                        panel.getTblSumaPedidos().setValueAt(descuento, fil, 3);
                     }
+                    
+                    panel.getTblSumaPedidos().setValueAt(subtotal - descuento, fil, 4);
                 }
             }
-        });
+        } /**
+         * Metodo sobre escrito que captura los cambios hechos sobre la
+         * tabla tblSumaPedidos
+         *
+         * @param evento calcula las columnas descuento y subtotal segun el
+         * valor de la columna cantidad
+         */ );
     }
 
     /**
@@ -266,6 +259,36 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
                 JOptionPane.showMessageDialog(panel, "¡ATTENCION! No se ha guardado el pedido");
             }
         }
+    }
+   
+    public void ultimasession(){
+        Connection conexion = getConnection();
+        
+        String nombre = PantallaCajaRegistradora.getLblOperario().getText();
+        String Fecha = panel.getTxtFecha().getText();
+        String Hora = panel.getTxtHora().getText();
+        String lstsession = Fecha +" "+ Hora;
+        
+        try {
+
+                    PreparedStatement ps = conexion.prepareStatement(SQLUltimaSession);
+
+                    ps.setString(1, lstsession);
+                    ps.setString(2, nombre);
+
+                    ps.executeUpdate();
+
+                } catch (SQLException se) {
+                } finally {
+
+                    try {
+                        if (conexion != null) {
+                            conexion.close();
+                        }
+
+                    } catch (SQLException se) {
+                    }
+                }
     }
 
     /**
@@ -413,8 +436,6 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
             }
         }
     }
-
-    
     
     public void botonBebidas() {
 

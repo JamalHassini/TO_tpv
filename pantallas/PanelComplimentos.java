@@ -7,7 +7,6 @@ package punto.de.venta.pantallas;
 
 import javax.swing.JButton;
 import punto.de.venta.acciones.AccionesComplimentos;
-import punto.de.venta.acciones.AccionesComplimentos1;
 
 /**
  * Clase del panelComplimentos
@@ -17,7 +16,7 @@ import punto.de.venta.acciones.AccionesComplimentos1;
 public class PanelComplimentos extends javax.swing.JPanel {
 
     public PantallaCajaRegistradora panel;
-    private AccionesComplimentos1 acciones;
+    private AccionesComplimentos acciones;
 
     /**
      * Constructor del panelComplimentos
@@ -25,7 +24,7 @@ public class PanelComplimentos extends javax.swing.JPanel {
      * @param panel es el panel donde se mostraran los botones de complimentos
      */
     public PanelComplimentos(PantallaCajaRegistradora panel) {
-        acciones = new AccionesComplimentos1(this);
+        acciones = new AccionesComplimentos(this);
         this.panel = panel;
         setSize(400, 250);
         setLocation(10, 15);
@@ -133,14 +132,14 @@ public class PanelComplimentos extends javax.swing.JPanel {
 
     private void btnPatatasAsadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatatasAsadasActionPerformed
         // Metodo de la clase AccionesBebidas que muestra patatas asadas en la tabla pedidos
-        acciones.devolverFritas();
+        acciones.devolverAsadas();
         //acciones.devolverAsadas();
     }//GEN-LAST:event_btnPatatasAsadasActionPerformed
 
     private void btnArosDeCebollaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArosDeCebollaActionPerformed
         // Metodo de la clase AccionesBebidas que muestra aros de cebolla en la tabla pedidos
         //acciones.devolverAros();
-        acciones.devolverFritas();
+        acciones.devolverAros();
     }//GEN-LAST:event_btnArosDeCebollaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
