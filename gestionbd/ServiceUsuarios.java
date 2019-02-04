@@ -11,10 +11,12 @@ package punto.de.venta.gestionbd;
  */
 public class ServiceUsuarios extends GestionSql {
 
-    public static final String SQLGuardaUsuario = "INSERT INTO " + TABLEUsuarios + "(Nombre, Tipo_Usuario, Password) VALUES(?,?,?)";
-    public static final String SQLCmbTipoUsuario = "SELECT Nombre FROM tipo_usuario";
-    public static final String SQLAcceso = "SELECT Nombre, Tipo_Usuario, Password FROM " + TABLEUsuarios + " WHERE Nombre = ? && Password = ?";
-    public static final String SQLListaUsuarios = "SELECT IdUsuario, Nombre, Tipo_Usuario, Password, Lastsession FROM " + TABLEUsuarios;
+    public static final String SQLGuardaUsuario = "INSERT INTO " + TABLEUsuarios + "(Nombre, IdTipo, Password) VALUES(?,?,?)";
+    public static final String SQLCmbTipoUsuario = "SELECT NomTipo FROM tipo_usuario";
+    public static final String SQLAcceso = "SELECT IdTipo, Nombre, Password FROM usuarios WHERE Nombre = ? && Password = ?"; 
+            //"WHERE IdTipo = SELECT NomTipo FROM tipo_usuario where IdTipo = ?";
+           // " INNER JOIN " +TableTipo + " ON usuarios.IdTipo = tipo_usuario.IdTipo WHERE NomTipo = ? ";
+    public static final String SQLListaUsuarios = "SELECT IdUsuario, Nombre, IdTipo, Password, Lastsession FROM " + TABLEUsuarios;
     public static final String SQLEliminarUsuario = "DELETE FROM " + TABLEUsuarios + " WHERE Nombre = ?";
-    public static final String SQLModificaUsuario = "UPDATE " + TABLEUsuarios + " SET Nombre= ?, Tipo_Usuario= ?, Password= ? WHERE IdUsuario= ?";
+    public static final String SQLModificaUsuario = "UPDATE " + TABLEUsuarios + " SET Nombre= ?, IdTipo= ?, Password= ?, Lastsession = ?  WHERE IdUsuario= ?";
 }

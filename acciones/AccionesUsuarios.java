@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import punto.de.venta.gestionbd.ServiceUsuarios;
-import punto.de.venta.pantallas.PanelAcceso;
+import punto.de.venta.principal.PanelAcceso;
 import punto.de.venta.pantallas.PanelAjustesUsuarios;
 import punto.de.venta.pantallas.PanelClientes;
 import punto.de.venta.pantallas.PanelListaUsuarios;
@@ -99,7 +99,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
                 while (rs.next()) {
 
                     operario = rs.getString("Nombre");
-                    tipousuario = rs.getString("Tipo_Usuario");
+                    tipousuario = rs.getString("IdTipo");
                 }
 
                 switch (tipousuario) {
@@ -121,12 +121,17 @@ public class AccionesUsuarios extends ServiceUsuarios {
                         break;
                     }
                     case "Operario": {
+                        
+                        
                         PuntoDeVentaFrame frame = new PuntoDeVentaFrame();
                         frame.setSize(1000, 700);
                         frame.setLocationRelativeTo(null);
                         frame.setVisible(true);
-                        frame.getMnuUsuarios().setVisible(false);
-                        frame.getMnuProductos().setVisible(false);
+                        frame.getMnuClientes().setVisible(false);
+                        frame.getMnuVentas().setVisible(false);
+                        frame.getMnuPedidos().setVisible(false);
+                        frame.getMnuUsuarios().setVisible(false);                        
+                        frame.getMnuProductos().setVisible(false);                        
                         PantallaCajaRegistradora.getLblOperario().setText(operario);
                         break;
                     }
@@ -166,7 +171,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
             while (rs.next()) {
 
-                String combousuario = rs.getString("Nombre");
+                String combousuario = rs.getString("NomTipo");
                 panel.getCmbTipoUsuario().addItem(combousuario);
             }
 
@@ -251,9 +256,9 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
         try {
 
-            dtm.addColumn("Id");
+            dtm.addColumn("IdUsuario");
             dtm.addColumn("Nombre");
-            dtm.addColumn("Tipo");
+            dtm.addColumn("IdTipo");
             dtm.addColumn("Password");
             dtm.addColumn("Lastsession");
 
@@ -292,7 +297,7 @@ public class AccionesUsuarios extends ServiceUsuarios {
 
                 DefaultTableModel modelo = (DefaultTableModel) panel4.getTblListaUsuarios().getModel();
 
-                String nombre = modelo.getValueAt(row, 0).toString();
+                String nombre = modelo.getValueAt(row, 1).toString();
                 try {
                     PreparedStatement ps = conexion.prepareStatement(SQLEliminarUsuario);
                     ps.setString(1, nombre);
@@ -337,15 +342,20 @@ public class AccionesUsuarios extends ServiceUsuarios {
             String nombre = mode.getValueAt(row, 1).toString();
             String tipousuario = mode.getValueAt(row, 2).toString();
             String pass = mode.getValueAt(row, 3).toString();
+            String Lastsession = mode.getValueAt(row, 4).toString();
 
             try {
 
                 PreparedStatement ps = conexion.prepareStatement(SQLModificaUsuario);
 
+                
                 ps.setString(1, nombre);
                 ps.setString(2, tipousuario);
                 ps.setString(3, pass);
-                ps.setString(4, Id);
+                ps.setString(4, Lastsession);
+                
+                ps.setString(5, Id);
+                
 
                 ps.executeUpdate();
 

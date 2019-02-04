@@ -87,12 +87,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCategoriasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mntmConfBotones">
+            <MenuItem class="javax.swing.JMenuItem" name="mntmStock">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Configuracion de botones"/>
+                <Property name="text" type="java.lang.String" value="Estado Stock"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mntmConfBotonesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mntmStockActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

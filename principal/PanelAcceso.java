@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package punto.de.venta.pantallas;
+package punto.de.venta.principal;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import punto.de.venta.acciones.AccionesUsuarios;
+import punto.de.venta.pantallas.PantallaCajaRegistradora;
 
 /**
  *
@@ -23,12 +24,12 @@ public class PanelAcceso extends javax.swing.JFrame {
      * Creates new form PanelAcceso
      */
     private AccionesUsuarios acciones;
-    private PantallaCajaRegistradora panel3;
+    //private PantallaCajaRegistradora panel3;
 
     public PanelAcceso() {
 
         acciones = new AccionesUsuarios(this);
-        panel3 = new PantallaCajaRegistradora();
+        //panel3 = new PantallaCajaRegistradora();
 
         this.setVisible(true);
         initComponents();
@@ -36,13 +37,13 @@ public class PanelAcceso extends javax.swing.JFrame {
 
     }
 
-    public PantallaCajaRegistradora getPanel3() {
-        return panel3;
-    }
-
-    public void setPanel3(PantallaCajaRegistradora panel3) {
-        this.panel3 = panel3;
-    }
+//    public PantallaCajaRegistradora getPanel3() {
+//        return panel3;
+//    }
+//
+//    public void setPanel3(PantallaCajaRegistradora panel3) {
+//        this.panel3 = panel3;
+//    }
 
     public JButton getBtnAceptar() {
         return btnAceptar;
@@ -227,7 +228,7 @@ public class PanelAcceso extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassKeyTyped
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped

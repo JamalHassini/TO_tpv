@@ -15,7 +15,7 @@ import punto.de.venta.acciones.AccionesUsuarios;
 import punto.de.venta.pantallas.PanelAjustesProductos;
 import punto.de.venta.pantallas.PanelAjustesUsuarios;
 import punto.de.venta.pantallas.PanelClientes;
-import punto.de.venta.pantallas.PanelConfigBotones;
+import punto.de.venta.pantallas.PanelStock;
 import punto.de.venta.pantallas.PanelListaUsuarios;
 
 /**
@@ -24,7 +24,7 @@ import punto.de.venta.pantallas.PanelListaUsuarios;
  */
 public class PuntoDeVentaFrame extends javax.swing.JFrame {
 
-    JFrame CajaRegistradoraFrame = new JFrame();
+   JFrame CajaRegistradoraFrame = new JFrame();
     
     private AccionesUsuarios usuarios;
     
@@ -56,8 +56,20 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
     }
 
     public JMenuItem getMntmConfBotones() {
-        return mntmConfBotones;
-    }    
+        return mntmStock;
+    }  
+     public JMenuItem getMnuCaja(){
+         return mnuCaja;
+     }
+     public JMenuItem getMnuVentas(){
+         return mnuVentas;
+     }
+     public JMenuItem getMnuPedidos(){
+         return mnuPedidos;
+     }
+     public JMenuItem getMnuClientes(){
+         return mnuClientes;
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +92,7 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
         mntmEMCliente = new javax.swing.JMenuItem();
         mnuProductos = new javax.swing.JMenu();
         mnuCategorias = new javax.swing.JMenuItem();
-        mntmConfBotones = new javax.swing.JMenuItem();
+        mntmStock = new javax.swing.JMenuItem();
         mnuUsuarios = new javax.swing.JMenu();
         mnutmAjustesUsuarios = new javax.swing.JMenuItem();
         mnutmLista = new javax.swing.JMenuItem();
@@ -157,13 +169,13 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
         });
         mnuProductos.add(mnuCategorias);
 
-        mntmConfBotones.setText("Configuracion de botones");
-        mntmConfBotones.addActionListener(new java.awt.event.ActionListener() {
+        mntmStock.setText("Estado Stock");
+        mntmStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mntmConfBotonesActionPerformed(evt);
+                mntmStockActionPerformed(evt);
             }
         });
-        mnuProductos.add(mntmConfBotones);
+        mnuProductos.add(mntmStock);
 
         mnuBarra.add(mnuProductos);
 
@@ -197,7 +209,7 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
         pnlContenedor.removeAll();
         String operari= PantallaCajaRegistradora.getLblOperario().getText();
         PantallaCajaRegistradora verCaja = new PantallaCajaRegistradora(this);
-        verCaja.getLblOperario().setText(operari);
+        PantallaCajaRegistradora.getLblOperario().setText(operari);
         pnlContenedor.add(verCaja, java.awt.BorderLayout.CENTER);
         
         pack();
@@ -247,14 +259,16 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnuProductosActionPerformed
 
-    private void mntmConfBotonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntmConfBotonesActionPerformed
+    private void mntmStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mntmStockActionPerformed
         // TODO add your handling code here:
-        pnlContenedor.removeAll();
-        PanelConfigBotones botones = new PanelConfigBotones(this);
-        pnlContenedor.add(botones, java.awt.BorderLayout.CENTER);
-        pack();
-        this.setSize(1000, 700);
-    }//GEN-LAST:event_mntmConfBotonesActionPerformed
+        //pnlContenedor.removeAll();
+        PanelStock stock = new PanelStock();
+        stock.setLocationRelativeTo(null);
+        //pnlContenedor.add(botones, java.awt.BorderLayout.CENTER);
+        stock.setVisible(true);
+        //pack();
+        //this.setSize(1000, 700);
+    }//GEN-LAST:event_mntmStockActionPerformed
 
     private void mnutmAjustesUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnutmAjustesUsuariosActionPerformed
         // TODO add your handling code here:
@@ -273,8 +287,8 @@ public class PuntoDeVentaFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem mntmConfBotones;
     private javax.swing.JMenuItem mntmEMCliente;
+    private javax.swing.JMenuItem mntmStock;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenuItem mnuCaja;
     private javax.swing.JMenuItem mnuCategorias;

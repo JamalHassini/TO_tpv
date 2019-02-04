@@ -26,6 +26,7 @@ public class GestionSql {
     public static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE;
     public static final String USERNAME = "seas";
     public static final String PASSWORD = "seas2018";
+    public static final String TableTipo = "tipo_usuario";
 
     public Connection conexion = null;
 

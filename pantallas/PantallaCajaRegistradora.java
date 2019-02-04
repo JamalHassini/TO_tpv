@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import punto.de.venta.acciones.AccionesCajaRegistradora;
 import punto.de.venta.acciones.AccionesUsuarios;
+import punto.de.venta.principal.PanelAcceso;
 import punto.de.venta.principal.PuntoDeVentaFrame;
 
 /**
@@ -36,13 +37,15 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         accione = new AccionesUsuarios(this);
         this.frame = frame;
         frame.setTitle("Caja registradora");
+        
         initComponents();
-
+        
         acciones.fecha();// Metodo de la clase accionesCajaRegistradora que muestra la fecha en el JTextField txtFecha
         acciones.hora(); // Metodo de la clase accionesCajaRegistradora que muestra la hora en el JTextField txtHora
+        acciones.ultimasession();
         acciones.ajustarCeldas();// Metodo de la clase accionesCajaRegistradora que ajusta el encabezado y las celdas de la tblSumaPedidos
         acciones.devuelveClientes();// Metodo de la clase accionesCajaRegistradora que carga los clientes en el JCombobox cmbClientes
-        acciones.ultimasession();
+        
         acciones.getIdVentas();// Metodo de la clase accionesCajaRegistradora que muestra el id del nuevo pedido a hacer en el JTextField txtCodPedido
         acciones.comboCantidad(); // Metodo de la clase accionesCajaRegistradora que muestra el JComboBox en la columna cantidad
         acciones.calculaSubtotal();// Metodo de la clase accionesCajaRegistradora que calcula la columna subtotal de cada fila
@@ -221,6 +224,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         txtCodPedido = new javax.swing.JTextField();
         cmbClientes = new javax.swing.JComboBox<>();
         lblOperario = new javax.swing.JLabel();
+        btnUsuario = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setMinimumSize(new java.awt.Dimension(1000, 650));
@@ -231,12 +235,12 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         lblCodPedidotxt.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblCodPedidotxt.setText("Pedido Numero ");
         add(lblCodPedidotxt);
-        lblCodPedidotxt.setBounds(150, 0, 100, 20);
+        lblCodPedidotxt.setBounds(900, 0, 100, 20);
 
         lblFecha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblFecha.setText("Fecha");
         add(lblFecha);
-        lblFecha.setBounds(290, 0, 50, 20);
+        lblFecha.setBounds(340, 0, 50, 20);
 
         lblHora.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblHora.setText("Hora");
@@ -253,7 +257,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         txtFecha.setForeground(new java.awt.Color(51, 0, 102));
         txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         add(txtFecha);
-        txtFecha.setBounds(290, 20, 100, 23);
+        txtFecha.setBounds(340, 20, 100, 23);
 
         txtHora.setEditable(false);
         txtHora.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -673,7 +677,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         txtCodPedido.setBorder(null);
         txtCodPedido.setPreferredSize(new java.awt.Dimension(6, 23));
         add(txtCodPedido);
-        txtCodPedido.setBounds(150, 20, 90, 20);
+        txtCodPedido.setBounds(900, 20, 90, 20);
 
         cmbClientes.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         add(cmbClientes);
@@ -682,12 +686,23 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         lblOperario.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         lblOperario.setForeground(new java.awt.Color(153, 0, 153));
         lblOperario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOperario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario1\\Desktop\\Sin título.jpg")); // NOI18N
         lblOperario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblOperario.setAlignmentY(0.0F);
         lblOperario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(lblOperario);
-        lblOperario.setBounds(10, 10, 130, 30);
+        lblOperario.setBounds(120, 10, 210, 40);
+
+        btnUsuario.setBackground(new java.awt.Color(255, 204, 204));
+        btnUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnUsuario.setText("USUARIO");
+        btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarioActionPerformed(evt);
+            }
+        });
+        add(btnUsuario);
+        btnUsuario.setBounds(10, 10, 100, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrantesMouseClicked
@@ -818,6 +833,17 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
         pnlProductos.repaint();
     }//GEN-LAST:event_btnHamburguesasMouseClicked
 
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+        // TODO add your handling code here:
+        PanelAcceso frame1= new PanelAcceso();
+        
+        frame1.setSize(400, 300);
+        frame1.setLocationRelativeTo(null);
+        frame1.setVisible(true);
+        frame.dispose();//;
+        
+    }//GEN-LAST:event_btnUsuarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
@@ -840,6 +866,7 @@ public class PantallaCajaRegistradora extends javax.swing.JPanel {
     private javax.swing.JButton btnPedir;
     private javax.swing.JButton btnPostres;
     private javax.swing.JButton btnPunto;
+    private javax.swing.JButton btnUsuario;
     private javax.swing.JComboBox<String> cmbClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

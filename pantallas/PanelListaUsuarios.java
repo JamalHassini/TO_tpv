@@ -100,7 +100,7 @@ public class PanelListaUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Tipo_Usuario", "Password", "Lastsession"
+                "Id", "Nombre", "Tipo_Usuario", "Password", "Lastsession"
             }
         ));
         jScrollPane1.setViewportView(tblListaUsuarios);

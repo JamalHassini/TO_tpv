@@ -267,13 +267,13 @@ public class AccionesCajaRegistradora extends ServiceCajaRegistradora {
         String nombre = PantallaCajaRegistradora.getLblOperario().getText();
         String Fecha = panel.getTxtFecha().getText();
         String Hora = panel.getTxtHora().getText();
-        String lstsession = Fecha +" "+ Hora;
+        //String lstsession = Fecha +" "+ Hora;
         
         try {
 
                     PreparedStatement ps = conexion.prepareStatement(SQLUltimaSession);
 
-                    ps.setString(1, lstsession);
+                    ps.setString(1, Fecha + " "+ Hora);
                     ps.setString(2, nombre);
 
                     ps.executeUpdate();

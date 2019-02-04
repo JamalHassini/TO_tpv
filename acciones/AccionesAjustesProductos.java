@@ -7,15 +7,12 @@ package punto.de.venta.acciones;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static java.lang.String.valueOf;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +21,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -444,7 +440,7 @@ public class AccionesAjustesProductos extends ServiceAjustesProductos {
 
         Connection conexion = getConnection();
 
-        DefaultTableModel dtm = new DefaultTableModel();
+        //DefaultTableModel dtm = new DefaultTableModel();
         ResultSet rs;
 
         try {

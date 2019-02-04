@@ -136,31 +136,31 @@ public class PanelClientes extends javax.swing.JPanel {
         return btnGuardarCliente;
     }
 
-    public static JScrollPane getjScrollPane1() {
+    public JScrollPane getjScrollPane1() {
         return jScrollPane1;
     }
 
-    public static JLabel getLblCorreo() {
+    public JLabel getLblCorreo() {
         return lblCorreo;
     }
 
-    public static JLabel getLblEdad() {
+    public JLabel getLblEdad() {
         return lblEdad;
     }
 
-    public static JLabel getLblEliminarCliente() {
+    public JLabel getLblEliminarCliente() {
         return lblEliminarCliente;
     }
 
-    public static JLabel getLblIdCliente() {
+    public JLabel getLblIdCliente() {
         return lblIdCliente;
     }
 
-    public static JLabel getLblNombre() {
+    public JLabel getLblNombre() {
         return lblNombre;
     }
 
-    public static JLabel getLblTelefono() {
+    public JLabel getLblTelefono() {
         return lblTelefono;
     }
 
@@ -208,7 +208,7 @@ public class PanelClientes extends javax.swing.JPanel {
         return txtCorreo;
     }
 
-    public static JButton getBtnEliminarCliente() {
+    public JButton getBtnEliminarCliente() {
         return btnEliminarCliente;
     }
 
@@ -403,7 +403,7 @@ public class PanelClientes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnEliminarCliente;
-    private static javax.swing.JButton btnGuardarCliente;
+    public static javax.swing.JButton btnGuardarCliente;
     public static javax.swing.JButton btnModificarCliente;
     private static javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JLabel lblCorreo;

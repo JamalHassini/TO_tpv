@@ -5,8 +5,6 @@
  */
 package punto.de.venta.principal;
 
-import punto.de.venta.pantallas.PanelAcceso;
-
 /**
  * Clase lanzadora de la aplicación.
  *
@@ -22,7 +20,7 @@ public class LanzadorAplicacion {
     public static void main(String[] args) {
         
 //        PuntoDeVentaFrame frame = new PuntoDeVentaFrame();
-//
+
 //        frame.setSize(1000, 700);
 //        frame.setLocationRelativeTo(null);
 //        frame.setVisible(true);
